@@ -1,4 +1,4 @@
-# NeuralLift-360
+# NeuralLift-360: Lifting An In-the-wild 2D Photo to A 3D Object with 360° Views
 
 [[Paper]](https://arxiv.org/abs/2204.00928) [[Website]](https://vita-group.github.io/NeuralLift-360/)
 
@@ -8,11 +8,19 @@
 
 ## Environment
 
-## Dataset Preparation
+## Data Preparation
+
+In our experiments, we use the depth from [Boost Your Own depth](https://github.com/compphoto/BoostingMonocularDepth) together with [LeRes](https://github.com/aim-uofa/AdelaiDepth/tree/main/LeReS).
+
+The notebook to export depth in numpy can be found [here](https://colab.research.google.com/drive/15YCsqaO6l94HueVwPQgHqVVDUJzdOEO5?usp=sharing).
 
 ## Training
 
 ## Testing
+
+## Acknowledgement
+
+Codebase based on https://github.com/ashawkey/stable-dreamfusion . Thanks [Jiaxiang Tang](https://me.kiui.moe/) for sharing and the insightful discussions!
 
 ## Citation
 
