@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/NeuralLift-360/static/css/main.a4bc8e6d.css",
-    "main.js": "/NeuralLift-360/static/js/main.74a2af39.js",
+    "main.js": "/NeuralLift-360/static/js/main.5e97a480.js",
     "static/js/787.4abed053.chunk.js": "/NeuralLift-360/static/js/787.4abed053.chunk.js",
-    "static/media/dietnerf.mp4": "/NeuralLift-360/static/media/dietnerf.dfd008f60fc899a75cf4.mp4",
+    "static/media/dietnerf.mp4": "/NeuralLift-360/static/media/dietnerf.57b2342bbbbe36ed31ce.mp4",
     "static/media/ours.mp4": "/NeuralLift-360/static/media/ours.482b637121b72ef9f452.mp4",
     "static/media/dsnerf.mp4": "/NeuralLift-360/static/media/dsnerf.1247cc0fd562a6c0a596.mp4",
     "static/media/sinnerf.mp4": "/NeuralLift-360/static/media/sinnerf.d33b4a742de7e024385f.mp4",
@@ -28,11 +28,11 @@
     "static/media/outline-icons.woff2": "/NeuralLift-360/static/media/outline-icons.687a4990ea22bb1a49d4.woff2",
     "index.html": "/NeuralLift-360/index.html",
     "main.a4bc8e6d.css.map": "/NeuralLift-360/static/css/main.a4bc8e6d.css.map",
-    "main.74a2af39.js.map": "/NeuralLift-360/static/js/main.74a2af39.js.map",
+    "main.5e97a480.js.map": "/NeuralLift-360/static/js/main.5e97a480.js.map",
     "787.4abed053.chunk.js.map": "/NeuralLift-360/static/js/787.4abed053.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a4bc8e6d.css",
-    "static/js/main.74a2af39.js"
+    "static/js/main.5e97a480.js"
   ]
 }
