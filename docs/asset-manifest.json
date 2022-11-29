@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/NeuralLift-360/static/css/main.a4a653ae.css",
+    "main.js": "/NeuralLift-360/static/js/main.4631975a.js",
+    "static/js/787.4abed053.chunk.js": "/NeuralLift-360/static/js/787.4abed053.chunk.js",
+    "static/media/dsnerf.mp4": "/NeuralLift-360/static/media/dsnerf.74bd7288f39b3356588f.mp4",
+    "static/media/dietnerf.mp4": "/NeuralLift-360/static/media/dietnerf.dfd008f60fc899a75cf4.mp4",
+    "static/media/ours.mp4": "/NeuralLift-360/static/media/ours.482b637121b72ef9f452.mp4",
+    "static/media/sinnerf.mp4": "/NeuralLift-360/static/media/sinnerf.f77be768ff2db58260f0.mp4",
+    "static/media/brand-icons.svg": "/NeuralLift-360/static/media/brand-icons.6729d29753e000c17489.svg",
+    "static/media/icons.svg": "/NeuralLift-360/static/media/icons.62d9dae4e0040e81c980.svg",
+    "static/media/ref.jpg": "/NeuralLift-360/static/media/ref.f8dafd7bf8139e4e0e17.jpg",
+    "static/media/framework-crop-1.jpg": "/NeuralLift-360/static/media/framework-crop-1.b843bf7d1c3c29c01fb2.jpg",
+    "static/media/outline-icons.svg": "/NeuralLift-360/static/media/outline-icons.9c4845b4b41ef40a22fa.svg",
+    "static/media/icons.eot": "/NeuralLift-360/static/media/icons.a01e3f2d6c83dc3aee17.eot",
+    "static/media/icons.ttf": "/NeuralLift-360/static/media/icons.c656b8caa454ed19b9a2.ttf",
+    "static/media/brand-icons.eot": "/NeuralLift-360/static/media/brand-icons.d68fa3e67dbb653a13ce.eot",
+    "static/media/brand-icons.ttf": "/NeuralLift-360/static/media/brand-icons.65a2fb6d9aaa164b41a0.ttf",
+    "static/media/ref.jpeg": "/NeuralLift-360/static/media/ref.72f825bf3b3fc07e115a.jpeg",
+    "static/media/brand-icons.woff": "/NeuralLift-360/static/media/brand-icons.cac87dc00c87a5d74711.woff",
+    "static/media/brand-icons.woff2": "/NeuralLift-360/static/media/brand-icons.278156e41e0ad908cf7f.woff2",
+    "static/media/icons.woff": "/NeuralLift-360/static/media/icons.425399f81e4ce7cbd967.woff",
+    "static/media/icons.woff2": "/NeuralLift-360/static/media/icons.38c6d8bab26db77d8c80.woff2",
+    "static/media/outline-icons.eot": "/NeuralLift-360/static/media/outline-icons.752905fa5edf21fc52a1.eot",
+    "static/media/outline-icons.ttf": "/NeuralLift-360/static/media/outline-icons.5367103510b27b784827.ttf",
+    "static/media/flags.png": "/NeuralLift-360/static/media/flags.99f63ae7a743f21ab308.png",
+    "static/media/outline-icons.woff": "/NeuralLift-360/static/media/outline-icons.ddae9b1ba9b0b42f5880.woff",
+    "static/media/outline-icons.woff2": "/NeuralLift-360/static/media/outline-icons.687a4990ea22bb1a49d4.woff2",
+    "static/media/revicons.eot": "/NeuralLift-360/static/media/revicons.a77de540a38981833f9e.eot",
+    "static/media/revicons.ttf": "/NeuralLift-360/static/media/revicons.57fd05d4ae650374c8de.ttf",
+    "static/media/revicons.woff": "/NeuralLift-360/static/media/revicons.e8746a624ed098489406.woff",
+    "index.html": "/NeuralLift-360/index.html",
+    "main.a4a653ae.css.map": "/NeuralLift-360/static/css/main.a4a653ae.css.map",
+    "main.4631975a.js.map": "/NeuralLift-360/static/js/main.4631975a.js.map",
+    "787.4abed053.chunk.js.map": "/NeuralLift-360/static/js/787.4abed053.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a4a653ae.css",
+    "static/js/main.4631975a.js"
+  ]
+}
