@@ -1,6 +1,6 @@
 # NeuralLift-360: Lifting An In-the-wild 2D Photo to A 3D Object with 360° Views
 
-[[Paper]](https://arxiv.org/abs/2204.00928) [[Website]](https://vita-group.github.io/NeuralLift-360/)
+[[Paper]](https://arxiv.org/abs/2211.16431) [[Website]](https://vita-group.github.io/NeuralLift-360/)
 
 ## Pipeline
 
@@ -31,7 +31,7 @@ If you find this repo is helpful, please cite:
 @InProceedings{Xu_2022_neuralLift,
 author = {Xu, Dejia and Jiang, Yifan and Wang, Peihao and Fan, Zhiwen and Wang, Yi and Wang, Zhangyang},
 title = {NeuralLift-360: Lifting An In-the-wild 2D Photo to A 3D Object with 360° Views},
-journal={arXiv preprint},
+journal={arXiv preprint arXiv:2211.16431},
 year={2022}
 }
 
