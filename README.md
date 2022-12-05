@@ -16,6 +16,8 @@ In our experiments, we use the depth from [Boost Your Own depth](https://github.
 
 The colab notebook to export depth in numpy can be found [here](https://colab.research.google.com/drive/15YCsqaO6l94HueVwPQgHqVVDUJzdOEO5?usp=sharing).
 
+The foreground mask can be obtained using this repo: https://github.com/OPHoperHPO/image-background-remove-tool
+
 ## Training
 
 ## Testing
