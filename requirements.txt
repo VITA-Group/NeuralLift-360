@@ -21,3 +21,5 @@ imageio
 imageio-ffmpeg
 accelerate
 tensorboard
+kornia
+torch_efficient_distloss
