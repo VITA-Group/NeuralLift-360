@@ -2,6 +2,12 @@
 
 [[Paper]](https://arxiv.org/abs/2211.16431) [[Website]](https://vita-group.github.io/NeuralLift-360/)
 
+## News
+
+- **23.03.12 Basic workflow is released! [Gradio App](#gradio) released!** 
+
+We're working on rolling out new exciting features soon and will prepare tutorials and better interface using gradio. Stay tuned!
+
 ## Pipeline
 
 ![](./docs/static/media/framework-crop-1.b843bf7d1c3c29c01fb2.jpg)
@@ -9,6 +15,8 @@
 ## Environment
 
 `pip install -r requirements.txt` will do the job.
+
+`pip install gradio` if you want to run the [Gradio App](#gradio).
 
 ## Data Preparation
 
@@ -18,9 +26,38 @@ The colab notebook to export depth in numpy can be found [here](https://colab.re
 
 The foreground mask can be obtained using this repo: https://github.com/Ir1d/image-background-remove-tool
 
+
+## Gradio
+
+```bash
+python gradio_app.py
+# add `--share` if you want an external public link
+```
+
+We prepare a Gradio App as well!
+
+Note: Currently, we load config from a pre-defined yaml file and we'll update this later. Also, it's a bit slower compared to directly running the training script because we have to render during training.
+
 ## Training
 
+We prepare the config files in the yaml file in `configs` directory.
+
+```bash
+python main.py --config configs/cabin.yaml
+```
+
 ## Testing
+
+After training process finishes, the code will automatically generates a video named `lift_ep0100_rgb.mp4`
+
+You can filter out all these videos in the log folder and sort them by time using the following code.
+
+```bash
+find ./ -name lift_ep0100_rgb.mp4 -printf "%T@ %Tc %p\n" | sort -n  
+```
+
+If you want to run test only, change `test: False` to `test: True` in the yaml config file.
+
 
 ## Acknowledgement
 
