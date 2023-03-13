@@ -46,6 +46,42 @@ We prepare the config files in the yaml file in `configs` directory.
 python main.py --config configs/cabin.yaml
 ```
 
+### Text inversion [Optional]
+
+The following script runs text inversion to obtain a better text embedding.
+
+```bash
+export MODEL_NAME="runwayml/stable-diffusion-v1-5"
+accelerate launch text_inversion.py \
+  --pretrained_model_name_or_path=$MODEL_NAME \
+  --learnable_property="object" \
+  --placeholder_token="<cabin>" --initializer_token="cabin" \
+  --resolution=512 \
+  --train_batch_size=1 \
+  --gradient_accumulation_steps=4 \
+  --max_train_steps=1000 \
+  --learning_rate=5.0e-04 --scale_lr \
+  --lr_scheduler="constant" \
+  --lr_warmup_steps=0 \
+  --output_dir="cabin_ti" \
+  --im_path='data/cabin4_centered.png' \
+  --mask_path='data/cabin4_centered_mask.png'
+```
+
+`test_dm.py` can be used to validate the effectiveness of textual inversion.
+
+An example config is provided in `configs/cabin_ti.yaml`
+
+The corresponding training script is:
+
+```bash
+python main.py --config configs/cabin_ti.yaml
+```
+
+### Imagic Finetuning [Optional]
+
+Coming soon.
+
 ## Testing
 
 After training process finishes, the code will automatically generates a video named `lift_ep0100_rgb.mp4`
