@@ -452,7 +452,7 @@ imagenet_style_templates_small = [
 class TextualInversionDataset(Dataset):
     def __init__(
         self,
-        data_root,
+        # data_root,
         tokenizer,
         learnable_property="object",  # [object, style]
         size=512,
@@ -464,7 +464,7 @@ class TextualInversionDataset(Dataset):
         center_crop=False,
         args=None
     ):
-        self.data_root = data_root
+        # self.data_root = data_root
         self.tokenizer = tokenizer
         self.learnable_property = learnable_property
         self.size = size
