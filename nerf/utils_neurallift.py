@@ -118,8 +118,8 @@ def get_rays(poses, intrinsics, H, W, N=-1, error_map=None):
         inds = torch.arange(H*W, device=device).expand([B, H*W])
 
     zs = torch.ones_like(i)
-    xs = -(i - cx) / fx * zs
-    # xs = (i - cx) / fx * zs
+    # xs = -(i - cx) / fx * zs
+    xs = (i - cx) / fx * zs
     ys = (j - cy) / fy * zs
     directions = torch.stack((xs, ys, zs), dim=-1)
     directions = safe_normalize(directions)
@@ -468,7 +468,7 @@ class Trainer(object):
             B, N = rays_o.shape[:2]
             H, W = data['H'], data['W']
 
-            if random.random() < 0.05:
+            if random.random() < self.opt.ref_perturb_prob:
                 # near by view
                 poses, dirs = rand_poses(1, self.device, radius_range=[self.opt.init_radius, self.opt.init_radius], return_dirs=self.opt.dir_text, theta_range=[self.opt.init_theta, self.opt.init_theta], phi_range=[180, 180], jitter=True, angle_overhead=self.opt.angle_overhead, angle_front=self.opt.angle_front, uniform_sphere_rate=0)
                 # poses += torch.randn(3, device=rays_o.device, dtype=torch.float)
@@ -487,14 +487,14 @@ class Trainer(object):
                 l_a = 1
             else: 
                 rand = random.random()
-                if rand > 0.8:
+                if rand < self.opt.p_albedo:
                     shading = 'albedo'
                     ambient_ratio = 1.0
                     l_a = torch.ones(3, device=rays_o.device, dtype=torch.float)
                     l_p = torch.zeros(3, device=rays_o.device, dtype=torch.float)
                 else:
                     # re-sample pose for normal (low resolution)
-                    if random.random() < 0.05:
+                    if random.random() < self.opt.ref_perturb_prob:
                         # near by view
                         poses, dirs = rand_poses(1, self.device, radius_range=[self.opt.init_radius, self.opt.init_radius], return_dirs=self.opt.dir_text, theta_range=[self.opt.init_theta, self.opt.init_theta], phi_range=[180, 180], jitter=True, angle_overhead=self.opt.angle_overhead, angle_front=self.opt.angle_front, uniform_sphere_rate=0)
                         # poses += torch.randn(3, device=rays_o.device, dtype=torch.float)
@@ -513,7 +513,7 @@ class Trainer(object):
                     # shading is on
                     l_a = torch.zeros(3, device=rays_o.device, dtype=torch.float) + 0.1
                     l_p = torch.zeros(3, device=rays_o.device, dtype=torch.float) + 0.9
-                    if random.random() > 0.5:
+                    if random.random() > self.opt.p_textureless:
                         shading = 'lambertian_df'
                         ambient_ratio = random.random() * 0.6 + 0.1
                     else:
@@ -551,7 +551,7 @@ class Trainer(object):
         # occupancy loss
         pred_ws = outputs['weights_sum'].reshape(B, 1, H, W)
 
-        if (np.random.random() < 0.5 and shading != 'textureless'):
+        if (np.random.random() < self.opt.p_randbg and shading != 'textureless'):
             # use rand bg
             bg_color = torch.ones_like(pred_rgb) * (torch.rand((B, 3, 1, 1), device=rays_o.device) * 0.6 + 0.2)
             pred_rgb = pred_rgb * pred_ws + bg_color * (1 - pred_ws)
@@ -625,7 +625,7 @@ class Trainer(object):
             else:
                 l_rgb = torch.mean(torch.abs(pred_rgb * self.fg_mask_2d - self.rgb * self.fg_mask_2d))
                 l_depth = self.margin_rank_loss((pred_depth * self.fg_mask_2d).squeeze()) * 10
-            l_density = torch.mean(pred_ws * (1 - self.fg_mask_2d))
+            l_density = torch.sum(pred_ws * (1 - self.fg_mask_2d)) / torch.sum(1 - self.fg_mask_2d)
             if l_density > 0.05:
                 l_density = l_density * 10
             ww['density'] = l_density.item()
@@ -635,7 +635,7 @@ class Trainer(object):
             #     ww['front_ssim'] = l_ssim.item()
             if not isinstance(l_depth, int):
                 ww['front_depth'] = l_depth.item()
-            loss = loss + l_rgb * 40 + l_depth + l_density
+            loss = loss + l_rgb * self.opt.ref_rgb_weight + l_depth + l_density
         pred_rgb_aug = pred_rgb
         # CLIP loss
         if self.epoch > self.opt.warmup_epoch and (not self.front_view):
@@ -669,16 +669,16 @@ class Trainer(object):
         ww['distortion'] = loss_dist.item()
         # if data['dir'] == 0:
         if self.front_view:
-            loss_depth_smooth = inverse_depth_smoothness_loss(pred_depth, pred_rgb_aug.float()) * 5
+            loss_depth_smooth = inverse_depth_smoothness_loss(pred_depth, pred_rgb_aug.float()) * self.opt.front_dsmooth_amplify
         else:
             loss_depth_smooth = inverse_depth_smoothness_loss(pred_depth, pred_rgb_aug.float())
         ww['depth_smooth'] = loss_depth_smooth.item()
         loss = loss + l_clip + loss_depth_smooth
         if self.epoch <= self.opt.warmup_epoch:
             # pass
-            loss = loss + loss_dist * self.opt.distortion * 10
+            loss = loss + loss_dist * self.opt.distortion * self.opt.front_dist_amplify
         elif self.front_view:
-            loss = loss + loss_dist * self.opt.distortion * 10
+            loss = loss + loss_dist * self.opt.distortion * self.opt.front_dist_amplify
         elif data['dir'] == 0 or data['dir'] == 2:
             loss = loss + loss_dist * self.opt.distortion
         else:
