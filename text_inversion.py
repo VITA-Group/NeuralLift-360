@@ -479,7 +479,7 @@ class TextualInversionDataset(Dataset):
         self.mask = np.array(Image.open(args.mask_path).convert('L')).astype(np.float32) / 255
         msk = self.mask.reshape(512, 512, 1)
         self.im = self.im * msk + (1 - msk)
-        self.aug = A.Compose([A.Transpose(), A.Flip(), A.ShiftScaleRotate(always_apply=True, p=1, scale_limit=(-0.2, 0.1), rotate_limit=10, value=255), A.ColorJitter(0.04, 0.04, 0.04, 0.04, p=0.5), A.GaussianBlur((0, 5), (0.1, 2), p=0.1)], additional_targets={'mask': 'image'})
+        self.aug = A.Compose([A.Transpose(), A.Flip(), A.ShiftScaleRotate(always_apply=True, p=1, scale_limit=(-0.2, 0.1), rotate_limit=10, border_mode=cv2.BORDER_CONSTANT, value=(255, 255, 255), mask_value=0), A.ColorJitter(0.04, 0.04, 0.04, 0.04, p=0.5), A.GaussianBlur((0, 5), (0.1, 2), p=0.1)], additional_targets={'mask': 'mask'})
         self.bg_aug_prob = 0
 
         self.num_images = 1000 #  len(self.image_paths)
