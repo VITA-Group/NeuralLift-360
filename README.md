@@ -92,7 +92,7 @@ You can filter out all these videos in the log folder and sort them by time usin
 find ./ -name lift_ep0100_rgb.mp4 -printf "%T@ %Tc %p\n" | sort -n  
 ```
 
-If you want to run test only, change `test: False` to `test: True` in the yaml config file.
+If you want to run test only, go to the yaml config file, change `test: False` to `test: True` and `ckpt: ` to the path of the trained checkpoint.
 
 
 ## Acknowledgement

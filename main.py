@@ -65,8 +65,8 @@ if __name__ == '__main__':
     if opt.test:
         guidance = None
 
-        trainer = Trainer('df', opt, model, guidance, device=device, workspace=opt.workspace, fp16=opt.fp16, use_checkpoint=opt.ckpt)
-        test_loader = NeRFDataset(opt, device=device, type='test', H=opt.H, W=opt.W, size=100).dataloader()
+        trainer = Trainer('lift', opt, model, guidance, device=device, workspace=opt.workspace, fp16=opt.fp16, use_checkpoint=opt.ckpt)
+        test_loader = NeRFDataset(opt, device=device, type='test', H=opt.H, W=opt.W, size=100, shading=opt.test_shading).dataloader()
         trainer.test(test_loader)
         
         if opt.save_mesh:

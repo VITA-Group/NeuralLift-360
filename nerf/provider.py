@@ -178,7 +178,7 @@ def circle_poses(device, radius=1.25, theta=60, phi=0, return_dirs=False, angle_
     
 
 class NeRFDataset:
-    def __init__(self, opt, device, type='train', H=256, W=256, size=100):
+    def __init__(self, opt, device, type='train', H=256, W=256, size=100, shading=False):
         super().__init__()
         
         self.opt = opt
@@ -195,6 +195,7 @@ class NeRFDataset:
         
         self.cx = self.H / 2
         self.cy = self.W / 2
+        self.shading = shading
 
         # [debug] visualize poses
         # poses, dirs = rand_poses(100, self.device, return_dirs=self.opt.dir_text, radius_range=self.radius_range)
@@ -228,16 +229,30 @@ class NeRFDataset:
         # sample a low-resolution but full image for CLIP
         rays = get_rays(poses, intrinsics, self.H, self.W, -1)
 
-        data = {
-            'H': self.H,
-            'W': self.W,
-            'rays_o': rays['rays_o'],
-            'rays_d': rays['rays_d'],
-            'dir': dirs,
-            'fov': fov,
-            'poses': poses,
-            'intrinsics': intrinsics,
-        }
+        if self.shading:
+            data = {
+                'H': self.H,
+                'W': self.W,
+                'rays_o': rays['rays_o'],
+                'rays_d': rays['rays_d'],
+                'dir': dirs,
+                'fov': fov,
+                'poses': poses,
+                'intrinsics': intrinsics,
+                'shading': 'lambertian_df',
+                'light_dir': rays['rays_o']
+            }
+        else:
+            data = {
+                'H': self.H,
+                'W': self.W,
+                'rays_o': rays['rays_o'],
+                'rays_d': rays['rays_d'],
+                'dir': dirs,
+                'fov': fov,
+                'poses': poses,
+                'intrinsics': intrinsics,
+            }
 
         return data
 
