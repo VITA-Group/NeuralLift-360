@@ -120,7 +120,7 @@ class StableDiffusion(nn.Module):
         # timestep ~ U(0.02, 0.98) to avoid very high/low noise level
         mx = self.max_step
         # mx = int(self.max_step - (self.max_step - self.min_step) / 200 * self.epoch + 0.5)
-        mn = max(self.min_step, int(self.max_step - (self.max_step - self.min_step) / (self.opt.max_epoch * 3) * self.epoch + 0.5))
+        mn = max(self.min_step, int(self.max_step - (self.max_step - self.min_step) / (self.opt.max_epoch // 3) * self.epoch + 0.5))
         # mn = self.min_step
         t = torch.randint(mn, mx + 1, [1], dtype=torch.long, device=self.device)
         use_vae = True
