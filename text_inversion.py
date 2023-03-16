@@ -380,12 +380,12 @@ def parse_args():
     parser.add_argument(
         "--im_path", type=str,
         default='data/cabin4_centered.png',
-        help=('POath to load reference rgb image')
+        help=('Path to load reference rgb image')
     )
     parser.add_argument(
         "--mask_path", type=str,
         default='data/cabin4_centered_mask.png',
-        help=('POath to load reference mask image')
+        help=('Path to load reference mask image')
     )
 
     args = parser.parse_args()
